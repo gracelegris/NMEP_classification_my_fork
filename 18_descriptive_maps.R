@@ -18,6 +18,9 @@ delta_shp   <- sf::st_read(file.path(PackageDataDir, "shapefiles/Delta/Delta.shp
 kano_shp <- sf::st_read(file.path("/Users/grace/Urban Malaria Proj Dropbox/urban_malaria/data/nigeria/nigeria_shapefiles/shapefiles/ShinyApp_shapefiles/Kano_metro/Kano_metro.shp"))
 kano_shp <- sf::st_set_crs(kano_shp, 4326)
 kano_shp <- sf::st_transform(kano_shp, 4326)
+adamawa_shp  <- sf::st_read(file.path(PackageDataDir, "shapefiles/Adamawa/Adamawa.shp"))
+kwara_shp    <- sf::st_read(file.path(PackageDataDir, "shapefiles/Kwara/Kwara.shp"))
+osun_shp   <- sf::st_read(file.path(PackageDataDir, "shapefiles/Osun/Osun.shp"))
 
 # read in extracted data for each state
 kaduna_data <- read.csv(file.path(PackageDataDir, "extractions/Kaduna_extracted_data_plus.csv"))
@@ -27,7 +30,9 @@ taraba_data  <- read.csv(file.path(PackageDataDir, "extractions/Taraba_extracted
 yobe_data    <- read.csv(file.path(PackageDataDir, "extractions/Yobe_extracted_data_plus.csv"))
 delta_data   <- read.csv(file.path(PackageDataDir, "extractions/Delta_extracted_data_plus.csv"))
 #kano_data <- read.csv(file.path(OutputsDir, "Final Extractions/kano_plus.csv"))
-
+adamawa_data  <- read.csv(file.path(PackageDataDir, "extractions/Adamawa_extracted_data_plus.csv"))
+kwara_data    <- read.csv(file.path(PackageDataDir, "extractions/Kwara_extracted_data_plus.csv"))
+osun_data   <- read.csv(file.path(PackageDataDir, "extractions/Osun_extracted_data_plus.csv"))
 
 # list of variables to map
 vars <- c("mean_EVI", "u5_tpr_rdt", "distance_to_water", "settlement_type", "flood")
@@ -98,23 +103,29 @@ map_variable <- function(shapefile, data, state_name, output_dir, vars) {
 
 # define state shapefiles and data
 state_shapefiles <- list(
-  "Kaduna" = kaduna_shp,
-  "Katsina" = katsina_shp,
-  "Niger" = niger_shp,
-  "Taraba" = taraba_shp,
-  "Yobe" = yobe_shp,
+  #"Kaduna" = kaduna_shp,
+  #"Katsina" = katsina_shp,
+  #"Niger" = niger_shp,
+  #"Taraba" = taraba_shp,
+  #"Yobe" = yobe_shp,
   #"Kano" = kano_shp
-  "Delta" = delta_shp
+  #"Delta" = delta_shp.
+  "Adamawa" = adamawa_shp,
+  "Kwara" = kwara_shp,
+  "Osun" = osun_shp
 )
 
 state_data <- list(
-  "Kaduna" = kaduna_data,
-  "Katsina" = katsina_data,
-  "Niger" = niger_data,
-  "Taraba" = taraba_data,
-  "Yobe" = yobe_data,
+  #"Kaduna" = kaduna_data,
+  #"Katsina" = katsina_data,
+  #"Niger" = niger_data,
+  #"Taraba" = taraba_data,
+  #"Yobe" = yobe_data,
   #"Kano" = kano_data
- "Delta" = delta_data
+ #"Delta" = delta_data,
+ "Adamawa" = adamawa_data,
+ "Kwara" = kwara_data,
+ "Osun" = osun_data
 )
 
 plotsDir <- file.path(plotsDir, "covariate maps")
